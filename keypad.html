@@ -8,21 +8,15 @@
                 this.initialize(color);
             }
 
-            var p = Actor.prototype = new createjs.Container();
+            var p = Actor.prototype = new createjs.Shape();
 
             p.pixelsPerSecond = 100;
 
-            p.Container_initialize = p.initialize;
             p.initialize = function(color) {
-                this.Container_initialize();
-
                 var width = 50;
                 var height = 50;
 
-                this.background = new createjs.Shape();
-                this.background.graphics.beginFill(color).drawRoundRect(0,0,width,height, 10);
-
-                this.addChild(this.background);
+                p.graphics.beginFill(color).drawRoundRect(0,0,width,height, 10);
             }
 
             p.movementCalculation = function(delta) {
