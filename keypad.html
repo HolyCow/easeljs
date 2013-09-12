@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+    <script src="https://rawgithub.com/madrobby/keymaster/master/keymaster.js"></script>
     <script>
         (function() {
             var Actor = function(color) {
@@ -60,54 +61,18 @@
             createjs.Ticker.addEventListener("tick", stage);
             createjs.Ticker.addEventListener("tick", tick);
 
-            document.onkeydown = handleKeyDown;
-            document.onkeyup = handleKeyUp;
-
-            function handleKeyDown (event) {
-                if (!event) {
-                    var event = window.event;
-                }
-                console.log("press " + event.keyCode);
-                switch(event.keyCode) {
-                    case 38:
-                    case 87: up = true; break;
-                    case 37:
-                    case 65: left = true; break;
-                    case 40:
-                    case 83: down = true; break;
-                    case 39:
-                    case 68: right = true; break;
-                }
-            }
-
-            function handleKeyUp (event) {
-                if (!event) {
-                    var event = window.event;
-                }
-                console.log("release " + event.keyCode);
-                switch(event.keyCode) {
-                    case 38:
-                    case 87: up = false; break;
-                    case 37:
-                    case 65: left = false; break;
-                    case 40:
-                    case 83: down = false; break;
-                    case 39:
-                    case 68: right = false; break;
-                }
-            }
 
             function tick(event) {
-                if (up) {
+                if (key.isPressed('up') || key.isPressed('w')) {
                     myActor.moveUp(event.delta);
                 }
-                if (down) {
+                if (key.isPressed('down') || key.isPressed('s')) {
                     myActor.moveDown(event.delta);
                 }
-                if (left) {
+                if (key.isPressed('left') || key.isPressed('a')) {
                     myActor.moveLeft(event.delta);
                 }
-                if (right) {
+                if (key.isPressed('right') || key.isPressed('d')) {
                     myActor.moveRight(event.delta);
                 }
             }
